@@ -1,0 +1,19 @@
+#todos {
+  margin-top: 20px;
+}
+
+#todos div {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.date {
+  display: block;
+  color: #999;
+}
+
+.done {
+  text-decoration: line-through;
+}

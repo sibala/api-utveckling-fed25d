@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Todo } from "../models/Todo";
+import { db } from "../config/db";
 
 const todos: Todo[] = [
   new Todo('AAA'),
@@ -11,39 +12,49 @@ const todos: Todo[] = [
   new Todo('Diska'),
 ]
 
-export const fetchAllTodos = (req: Request, res: Response) => {
-  const search = req.query.search
-  const sort = req.query.sort
-  let filteredTodos = todos;
+export const fetchAllTodos = async (req: Request, res: Response) => {
+  // const search = req.query.search
+  // const sort = req.query.sort
+  // let filteredTodos = todos;
+
+  // try {
+  //   if (search) {
+  //     filteredTodos = filteredTodos.filter((t) => t.content.includes(search.toString()))
+  //   }
+    
+  //   if (sort && sort === "asc") {
+  //     filteredTodos = filteredTodos.sort((a, b) => {
+  //       const todo1 = a.content.toLowerCase()
+  //       const todo2 = b.content.toLowerCase()
+
+  //       if (todo1 > todo2) return 1
+  //       if (todo1 < todo2) return -1
+  //       return 0
+  //     })
+  //   }
+
+  //   if (sort && sort === "desc") {
+  //     filteredTodos = filteredTodos.sort((a, b) => {
+  //       const todo1 = a.content.toLowerCase()
+  //       const todo2 = b.content.toLowerCase()
+
+  //       if (todo1 < todo2) return 1
+  //       if (todo1 > todo2) return -1
+  //       return 0
+  //     })
+  //   }
+
+  //   res.json(filteredTodos)
+  // } catch(error: unknown) {
+  //   const message = error  instanceof Error ? error.message : 'Unknown error'
+  //   res.status(500).json({error: message})
+  // }
 
   try {
-    if (search) {
-      filteredTodos = filteredTodos.filter((t) => t.content.includes(search.toString()))
-    }
-    
-    if (sort && sort === "asc") {
-      filteredTodos = filteredTodos.sort((a, b) => {
-        const todo1 = a.content.toLowerCase()
-        const todo2 = b.content.toLowerCase()
-
-        if (todo1 > todo2) return 1
-        if (todo1 < todo2) return -1
-        return 0
-      })
-    }
-
-    if (sort && sort === "desc") {
-      filteredTodos = filteredTodos.sort((a, b) => {
-        const todo1 = a.content.toLowerCase()
-        const todo2 = b.content.toLowerCase()
-
-        if (todo1 < todo2) return 1
-        if (todo1 > todo2) return -1
-        return 0
-      })
-    }
-
-    res.json(filteredTodos)
+    const [results] = await db.query(
+      'SELECT * FROM todos'
+    );
+    res.json(results)
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})
@@ -51,11 +62,20 @@ export const fetchAllTodos = (req: Request, res: Response) => {
 }
 
 
-export const fetchTodo = (req: Request, res: Response) => {
+export const fetchTodo = async (req: Request, res: Response) => {
   const id = req.params.id
-  const todo = todos.find((t) => t.id === parseInt(id))
 
-  res.json(todo)
+  try {
+    const [results] = await db.query(
+      `SELECT * FROM todos WHERE id = ?`,
+      [id]
+    );
+    res.json(results)
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+
 }
 
 export const createTodo = (req: Request, res: Response) => {

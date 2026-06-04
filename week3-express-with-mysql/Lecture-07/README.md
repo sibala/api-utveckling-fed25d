@@ -1,3 +1,8 @@
+# Videolinks
+- (01 mysql connection)[https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FFED25%20%2D%20API%2Dutveckling%2D20260602%5F092120%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ecd347376%2Dd0e3%2D46c1%2D9b12%2Dfa72f7ecc6da]
+
+
+
 # Exercises
 
 ## 1. Getting Started with MySQL connection in the post-API

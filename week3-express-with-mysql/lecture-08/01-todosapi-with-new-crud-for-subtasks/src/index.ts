@@ -10,6 +10,10 @@ app.use(cors());        // This makes the Express server except request from oth
 // Routes
 import todoRouter from './routes/todos'
 app.use('/todos', todoRouter)
+import subtaskRouter from './routes/subtasks'
+app.use('/subtasks', subtaskRouter)
+
+
 
 // Test DB connection
 import { connectToDatabase } from './config/db';

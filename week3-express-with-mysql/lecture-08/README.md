@@ -1,15 +1,15 @@
 # Exercises
 
-## 1. Create a new table in PHPMyAdmin
-- In PHPMyAdmin in the same DB as your "posts"-table -> Create a new table "comments" with the following fields:
-  - id INT(10) PK 
-  - post_id INT(10) FK 
+## 1. Create a new table in Beekeeper Studio
+- In Beekeeper in the same DB as your "posts"-table -> Create a new table "comments" with the following fields:
+  - id INT UNSIGNED PK 
+  - post_id INT UNSIGNED FK 
   - content TEXT
   - author VARCHAR(100)
   - created_at TIMESTAMP CURRENT_TIMESTAMP
 
 ## 2. Extend the Post-API with CRUD for the table "comments"
-- Add CRUD handling for the new table "comments" in the Post-API, as we did in the lesson for todo-API
+- Add CRUD handling for the new table "comments" in the Post-API, as we did in the lesson for subtasks in todo-API
 
 ## 3. Extend the Post-API, work with SQL Joins 
 - Extend the SQL query for fetching specific post, by adding a JOIN between "posts" and "comments".

@@ -1,55 +1,15 @@
 import { Request, Response } from "express";
-import { Todo } from "../models/Todo";
 import { db } from "../config/db";
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
-const todos: Todo[] = [
-  new Todo('AAA'),
-  new Todo('BBB'),
-  new Todo('CCC', true),
-  new Todo('Handla mat'),
-  new Todo('Käka mat', true),
-  new Todo('Diska'),
-  new Todo('Diska'),
-]
 
+/**
+ * Part of the exercise to figure search and sort functionality out on your own
+ */
 export const fetchAllTodos = async (req: Request, res: Response) => {
   // const search = req.query.search
   // const sort = req.query.sort
   // let filteredTodos = todos;
-
-  // try {
-  //   if (search) {
-  //     filteredTodos = filteredTodos.filter((t) => t.content.includes(search.toString()))
-  //   }
-    
-  //   if (sort && sort === "asc") {
-  //     filteredTodos = filteredTodos.sort((a, b) => {
-  //       const todo1 = a.content.toLowerCase()
-  //       const todo2 = b.content.toLowerCase()
-
-  //       if (todo1 > todo2) return 1
-  //       if (todo1 < todo2) return -1
-  //       return 0
-  //     })
-  //   }
-
-  //   if (sort && sort === "desc") {
-  //     filteredTodos = filteredTodos.sort((a, b) => {
-  //       const todo1 = a.content.toLowerCase()
-  //       const todo2 = b.content.toLowerCase()
-
-  //       if (todo1 < todo2) return 1
-  //       if (todo1 > todo2) return -1
-  //       return 0
-  //     })
-  //   }
-
-  //   res.json(filteredTodos)
-  // } catch(error: unknown) {
-  //   const message = error  instanceof Error ? error.message : 'Unknown error'
-  //   res.status(500).json({error: message})
-  // }
 
   
   try {
@@ -63,26 +23,85 @@ export const fetchAllTodos = async (req: Request, res: Response) => {
   }
 }
 
-
 export const fetchTodo = async (req: Request, res: Response) => {
+  console.log(req.params)
   const id = req.params.id
 
   try {
-    const [results] = await db.query<ResultSetHeader[]>(
-      `SELECT * FROM todos WHERE id = ?`,
+    const [rows] = await db.query<RowDataPacket[]>(`
+        SELECT 
+          todos.id AS todo_id, 
+          todos.content AS todo_content,
+          todos.done AS todo_done,
+          todos.created_at AS todo_created_at,
+          subtasks.id AS subtask_id, 
+          subtasks.todo_id AS subtask_todo_id,
+          subtasks.content AS subtask_content,
+          subtasks.done AS subtask_done,
+          subtasks.created_at AS subtask_created_at
+        from todos
+        LEFT JOIN subtasks ON todos.id = subtasks.todo_id
+        WHERE todos.id = ?
+      `,
       [id]
     );
 
-    const todo = results[0]
+    const todo = rows[0]
     if (!todo) {
       res.status(404).json({message: "Todo not found"})
     }
-    res.json(results)
+  
+    res.json(formatedTodo1(rows))
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})
   }
 }
+
+// Solution 1
+const formatedTodo1 = (rows: any) => {
+  let subtasks = []
+  for (let row of rows) {
+    let subtask = {
+      id:         row.subtask_id,
+      todo_id:    row.subtask_todo_id,
+      content:    row.subtask_content,
+      done:       row.subtask_done,
+      created_at: row.subtask_created_at,
+    }
+
+    subtasks.push(subtask)
+  }
+
+  return {
+    id:         rows[0].todo_id,
+    content:    rows[0].todo_content,
+    done:       rows[0].todo_done,
+    created_at: rows[0].todo_created_at,
+    subtasks:   subtasks
+  }
+}
+
+
+// Solution 2
+const formatedTodo2 = (rows: any) => {
+  return {
+      id:         rows[0].todo_id,
+      content:    rows[0].todo_content,
+      done:       rows[0].todo_done,
+      created_at: rows[0].todo_created_at,
+      subtasks:   rows.map((row: any) => ({
+          id:        row.subtask_id,
+          todo_id:   row.subtask_todo_id,
+          content:   row.subtask_content,
+          done:      row.subtask_done,
+          created_at:row.subtask_created_at
+      }))
+    }
+}
+
+
+
 
 export const createTodo = async (req: Request, res: Response) => {
   const content = req.body.content;
@@ -90,17 +109,6 @@ export const createTodo = async (req: Request, res: Response) => {
     res.status(400).json({error: 'Content is required'}) 
     return; 
   }
-  // const todoExists = todos.find((t) => t.content === content)
-  // if (todoExists) {
-  //   res.json({message: 'Todo exisits already. Please create antoher todo'})  
-  //   return;
-  // }
-  // console.log(todoExists)
-
-  // const newTodo = new Todo(content) // content = "Släng soporna"
-  // todos.push(newTodo);
-  
-  // res.status(201).json({message: 'Todo created', data: newTodo})
 
   try {
     const sql = `
@@ -116,6 +124,9 @@ export const createTodo = async (req: Request, res: Response) => {
   }
 }
 
+/**
+ * Part of the exercise to figure out patch request on your own
+ */
 export const updateTodo = (req: Request, res: Response) => {
   // const content = req.body.content;
   // const done = req.body.done;
@@ -139,14 +150,6 @@ export const updateTodo = (req: Request, res: Response) => {
 export const deleteTodo = async (req: Request, res: Response) => {
   const id = req.params.id
 
-  // const todoIndex = todos.findIndex((t) => t.id === parseInt(id)) 
-  // if (todoIndex === -1) {
-  //   res.status(404).json({error: 'Todo not found'})
-  //   return;
-  // }
-
-  // todos.splice(todoIndex, 1)
-
   try {
     const sql = `
       DELETE FROM todos 
@@ -163,5 +166,4 @@ export const deleteTodo = async (req: Request, res: Response) => {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})
   }
-  
 }

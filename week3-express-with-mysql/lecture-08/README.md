@@ -4,7 +4,7 @@
 
 - [02 - Create subtask table with FK, and extend CRUD capabilities for the subtasks table in the API](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FFED25%20%2D%20API%2Dutveckling%2D20260604%5F090259%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E7c01a3e1%2Deb8a%2D45de%2D80e8%2D5f60aed8111f)
 
-- [03 - fetchTodo is extended so that it displays the subtasks beloning to a specific todo](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FFED25%20%2D%20API%2Dutveckling%2D20260604%5F113102%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E5a657449%2Ddc23%2D4695%2D84b1%2D86ba007a6030)
+- [03 - fetchTodo is extended so that it displays the subtasks belonging to a specific todo](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FFED25%20%2D%20API%2Dutveckling%2D20260604%5F113102%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E5a657449%2Ddc23%2D4695%2D84b1%2D86ba007a6030)
 
 
 # Exercises

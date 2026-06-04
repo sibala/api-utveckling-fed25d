@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { db } from "../config/db";
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 
 // /**
@@ -23,7 +23,7 @@ export const fetchSubtask = async (req: Request, res: Response) => {
   const id = req.params.id
 
   try {
-    const [results] = await db.query<ResultSetHeader[]>(
+    const [results] = await db.query<RowDataPacket[]>(
       `SELECT * FROM subtasks WHERE id = ?`,
       [id]
     );

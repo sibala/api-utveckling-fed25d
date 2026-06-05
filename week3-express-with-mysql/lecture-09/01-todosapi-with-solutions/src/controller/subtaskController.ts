@@ -65,24 +65,36 @@ export const createSubtask = async (req: Request, res: Response) => {
   }
 }
 
-export const updateSubtask = (req: Request, res: Response) => {
+export const updateSubtask = async (req: Request, res: Response) => {
   // const content = req.body.content;
   // const done = req.body.done;
-  // const {content, done} = req.body // Destructur JS Object
-  // if (content === undefined || done === undefined) {
-  //   res.status(400).json({error: 'Content and Done are required'})
-  //   return
-  // }
+  const {content, done} = req.body // Destructur JS Object
+  if (content === undefined || done === undefined) {
+    res.status(400).json({error: 'Content and Done are required'})
+    return
+  }
 
-  // const todo = todos.find((t) => t.id === parseInt(req.params.id))
-  // if (!todo) {
-  //   res.status(404).json({error: 'Todo not found'})
-  //   return;
-  // }
+
+  try {
+    const id = req.params.id
+    const [result] = await db.query<ResultSetHeader>(`
+        UPDATE subtasks 
+        SET content = ?, done = ?
+        WHERE id = ?
+      `,
+      [content, done, id]
+    );
+    
+    if (result.affectedRows === 0) {
+      res.status(404).json({message: "Subtask not found"})
+      return // makes sure that we are done with this function, enabling other calls to work after
+    }
   
-  // todo.content = content;
-  // todo.done = done;
-  // res.json({message: 'Todo updated', data: todo})
+    res.json({message: 'Subtask updated'})
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
 }
 
 export const deleteSubtask = async (req: Request, res: Response) => {

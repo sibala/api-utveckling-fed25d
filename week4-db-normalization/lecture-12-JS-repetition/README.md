@@ -18,7 +18,7 @@
 
 
 # Extra handledning
- - kl 08-10, måndag-torsdag
+ - kl 08-10, nästa vecka v25, måndag-torsdag  
 
 
 # Priser

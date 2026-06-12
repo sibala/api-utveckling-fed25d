@@ -26,7 +26,7 @@
  ```
 Priser
 {
-    'För VG': 39
+    'För VG': '39 kr',
     'Lektioner utan torra skämt': 'Kostar skjortan'
 }
 

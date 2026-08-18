@@ -8,7 +8,7 @@ const router = express.Router()
 
 // router.get('/', fetchAllSubtasks)
 router.get('/:id', fetchSubtask)
-router.post('/:variable', createSubtask)
+router.post('/', createSubtask)
 router.patch('/:id', updateSubtask)
 router.delete('/:id', deleteSubtask)
 

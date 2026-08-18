@@ -4,7 +4,6 @@
 
 ## JS code examples
 - [js-objects](js-objects)
-- Lab 5 is about 
 
 ## Work on...
 - Prioritize working on the assignment this week, deadline this friday kl 23:59

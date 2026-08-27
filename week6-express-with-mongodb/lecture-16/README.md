@@ -3,6 +3,7 @@
 ## Videolinks
 - [01 - Solutions on MongoDB exercises](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260827%5F091638%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eca8d8e90%2D56ef%2D4669%2Da750%2D00b2938bef03)
 - [02 - ExpressAPI with MongoDB, via an ODM-tool Mongoose - PART 1](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260827%5F100555%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E988b8a6b%2Df786%2D4b66%2Dad81%2D9329e84539ae)
+- [03 - ExpressAPI with MongoDB, via an ODM-tool Mongoose - PART 2](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260827%5F130229%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Effb976ab%2Db85c%2D4eaa%2D836f%2D4d59d4ae264b)
 
 
 ## The code walkthrough

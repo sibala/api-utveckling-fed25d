@@ -16,8 +16,8 @@ app.use('/subtasks', subtaskRouter)
 
 
 // Test DB connection
-import { connectToDatabase } from './config/db';
-connectToDatabase()
+import mongoose from "mongoose"
+mongoose.connect(process.env.MONGODB_URL || "");
 
 // Start the express server
 const PORT = 3000

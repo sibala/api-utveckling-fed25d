@@ -13,7 +13,7 @@
 - [Mongoose docs - Getting Started](https://mongoosejs.com/docs/index.html)
 - [Mongoose docs - Schemas](https://mongoosejs.com/docs/guide.html)
 - [Mongoose docs - SchemaTypes](https://mongoosejs.com/docs/schematypes.html)
-- [Mongoose docs - Models](https://mongoosejs.com/docs/models.html)
+- [Mongoose docs - Models](https://mongoosejs.com/docs/api/model.html)
 
 
 

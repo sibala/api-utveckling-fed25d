@@ -5,7 +5,7 @@
 
 
 ## The code walkthrough
-- [02-todosapi-mongoDB-with-JOINS-exercises](02-todosapi-mongoDB-with-JOINS-exercises)
+- [02-todosapi-mongoDB-with-JOINS-exercises](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260828%5F090032%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E3c02e124%2D294f%2D4991%2D88a5%2Dfc9a83788475)
 
 
 ## Reading suggestions

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { db } from "../config/db";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
+import SubTask from "../models/SubTask";
 
 
 // /**
@@ -43,22 +44,30 @@ export const fetchSubtask = async (req: Request, res: Response) => {
 export const createSubtask = async (req: Request, res: Response) => {
   const content = req.body.content;
   const todo_id = req.body.todo_id;
-  if (content === undefined) {
-    res.status(400).json({error: 'Content is required'}) 
+  if (content === undefined || todo_id === undefined) {
+    res.status(400).json({error: 'Both Content AND todo_id is required'}) 
     return; 
   }
 
   try {
-    const sql = `
-      INSERT INTO subtasks (todo_id, content)
-      VALUES (?, ?)
-    `;
+    // const sql = `
+    //   INSERT INTO subtasks (todo_id, content)
+    //   VALUES (?, ?)
+    // `;
 
-    const [result] = await db.query<ResultSetHeader>(
-        sql,
-        [todo_id, content]
-    );
-    res.status(201).json({message: 'Subtask created', newSubtask: {id: result.insertId, content: content}})
+    // const [result] = await db.query<ResultSetHeader>(
+    //     sql,
+    //     [todo_id, content]
+    // );
+    // res.status(201).json({message: 'Subtask created', newSubtask: {id: result.insertId, content: content}})
+
+
+    const newSubtask = await SubTask.create({
+      todo_id: todo_id,
+      content: content
+    })
+
+    res.status(201).json({message: 'Subtask created', newSubtask: newSubtask})
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})

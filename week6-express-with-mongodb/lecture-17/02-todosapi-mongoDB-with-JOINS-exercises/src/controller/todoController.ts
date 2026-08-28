@@ -11,7 +11,7 @@ export const fetchAllTodos = async (req: Request, res: Response) => {
   const sort = req.query.sort
   
   try {
-    const todos = await Todo.find()
+    const todos = await Todo.find().populate('subtasks')
     res.json(todos)
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
@@ -23,7 +23,7 @@ export const fetchTodo = async (req: Request, res: Response) => {
   const id = req.params.id as string
 
   try {
-    const todo = await Todo.findById(id)
+    const todo = await Todo.findById(id).populate('subtasks')
     if (!todo) {
       res.status(404).json({message: "Todo not found"})
     }

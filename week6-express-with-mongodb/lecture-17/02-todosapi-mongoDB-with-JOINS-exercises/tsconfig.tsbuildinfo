@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/config/db.ts","./src/controller/subtaskcontroller.ts","./src/controller/todocontroller.ts","./src/models/itododbresponse.ts","./src/models/todo.ts","./src/routes/subtasks.ts","./src/routes/todos.ts"],"version":"5.9.3"}

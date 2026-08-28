@@ -1,7 +1,7 @@
 # ExpressAPI with MongoDB/Mongoose and exercises
 
 ## Videolinks
-- [01 - ExpressAPI with MongoDB and JOINS, via an ODM-tool Mongoose]()
+- [01 - ExpressAPI with MongoDB and JOINS, via an ODM-tool Mongoose - kommer snart]()
 
 
 ## The code walkthrough

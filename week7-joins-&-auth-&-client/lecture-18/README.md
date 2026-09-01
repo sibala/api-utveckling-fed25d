@@ -18,6 +18,14 @@
 - [Mongoose docs - Populate (Joins/References)](https://mongoosejs.com/docs/populate.html)
 - [MongoDB docs - Data Model Design](https://www.mongodb.com/docs/manual/core/data-model-design/)
 
+### Client
+- [MDN - try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
+- [MDN - Fetch API (GET, POST, DELETE)](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- [MDN - async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+- [MDN - URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+- [MDN - JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+- [MDN - window.location.href](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
+
 
 # Exercises
 

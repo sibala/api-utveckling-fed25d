@@ -7,11 +7,24 @@ import { ResultSetHeader } from "mysql2";
  * Part of the exercise to figure search and sort functionality out on your own
  */
 export const fetchAllTodos = async (req: Request, res: Response) => {
-  const search = req.query.search
-  const sort = req.query.sort
+  const search = req.query.search as string
+  const sort = req.query.sort as string
   
   try {
-    const todos = await Todo.find()
+    console.log(sort);
+
+    let filter:{} = {};
+    if (search) {
+      filter = {content: {$regex: search}}
+    }
+
+    let sortOrder: {} = {}
+    if (sort && (sort.toLowerCase() === 'asc' || sort.toLowerCase() === 'desc')) {
+      sortOrder = {content: sort.toLowerCase()}
+    }
+
+
+    const todos = await Todo.find(filter).sort(sortOrder)
     res.json(todos)
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
@@ -23,7 +36,7 @@ export const fetchTodo = async (req: Request, res: Response) => {
   const id = req.params.id as string
 
   try {
-    const todo = await Todo.findById(id)
+    const todo = await Todo.findById(id).populate('subtasks')
     if (!todo) {
       res.status(404).json({message: "Todo not found"})
     }
@@ -55,26 +68,23 @@ export const createTodo = async (req: Request, res: Response) => {
  * Part of the exercise to figure out patch request on your own
  */
 export const updateTodo = async (req: Request, res: Response) => {
-  // const content = req.body.content;
-  // const done = req.body.done;
+  const id = req.params.id as string
   const {content, done} = req.body // Destructur JS Object
-  if (content === undefined || done === undefined) {
-    res.status(400).json({error: 'Content and Done are required'})
+  if (content === undefined && done === undefined) {
+    res.status(400).json({error: 'Either content OR done are required'})
     return
   }
 
 
   try {
-    const id = req.params.id
-    const [result] = await db.query<ResultSetHeader>(`
-        UPDATE todos 
-        SET content = ?, done = ?
-        WHERE id = ?
-      `,
-      [content, done, id]
-    );
+
+    const updatedFields: Partial<{content: string, done: boolean}> = {};
+    if (content !== undefined) updatedFields.content = content
+    if (done !== undefined) updatedFields.done = done
     
-    if (result.affectedRows === 0) {
+    const result = await Todo.updateOne({_id: id}, {$set: updatedFields})
+    
+    if (result.matchedCount === 0) {
       res.status(404).json({message: "Todo not found"})
       return // makes sure that we are done with this function, enabling other calls to work after
     }

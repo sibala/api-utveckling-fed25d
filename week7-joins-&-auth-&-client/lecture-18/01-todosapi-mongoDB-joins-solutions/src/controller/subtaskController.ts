@@ -1,39 +1,21 @@
 import { Request, Response } from "express";
 import { db } from "../config/db";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
+import Subtask from "../models/Subtask";
 
-
-// /**
-//  * Part of the exercise to figure search and sort functionality out on your own
-//  */
-// export const fetchAllSubtasks = async (req: Request, res: Response) => {
-//   try {
-//     const [results] = await db.query(
-//       'SELECT * FROM todos'
-//     );
-//     res.json(results)
-//   } catch(error: unknown) {
-//     const message = error  instanceof Error ? error.message : 'Unknown error'
-//     res.status(500).json({error: message})
-//   }
-// }
 
 export const fetchSubtask = async (req: Request, res: Response) => {
-  console.log(req.params)
-  const id = req.params.id
+  const id = req.params.id as string
 
   try {
-    const [results] = await db.query<RowDataPacket[]>(
-      `SELECT * FROM subtasks WHERE id = ?`,
-      [id]
-    );
-    console.log(results, results[0])
+    const subtask = await Subtask.findById(id);
 
-    const todo = results[0]
-    if (!todo) {
+    if (!subtask) {
       res.status(404).json({message: "Subtask not found"})
-    }
-    res.json(todo)
+      return;
+    } 
+
+    res.json(subtask)
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})
@@ -41,24 +23,16 @@ export const fetchSubtask = async (req: Request, res: Response) => {
 }
 
 export const createSubtask = async (req: Request, res: Response) => {
-  const content = req.body.content;
-  const todo_id = req.body.todo_id;
-  if (content === undefined) {
-    res.status(400).json({error: 'Content is required'}) 
+  const content = req.body.content as string;
+  const todo_id = req.body.todo_id as string;
+  if (content === undefined || todo_id === undefined) {
+    res.status(400).json({error: 'Content AND todo_id are required'}) 
     return; 
   }
 
   try {
-    const sql = `
-      INSERT INTO subtasks (todo_id, content)
-      VALUES (?, ?)
-    `;
-
-    const [result] = await db.query<ResultSetHeader>(
-        sql,
-        [todo_id, content]
-    );
-    res.status(201).json({message: 'Subtask created', newSubtask: {id: result.insertId, content: content}})
+    const newSubtask = await Subtask.create({todo_id: todo_id, content: content})
+    res.status(201).json({message: 'Subtask created', newSubtask: newSubtask})
   } catch(error: unknown) {
     const message = error  instanceof Error ? error.message : 'Unknown error'
     res.status(500).json({error: message})
@@ -66,26 +40,22 @@ export const createSubtask = async (req: Request, res: Response) => {
 }
 
 export const updateSubtask = async (req: Request, res: Response) => {
-  // const content = req.body.content;
-  // const done = req.body.done;
+  const id = req.params.id as string
   const {content, done} = req.body // Destructur JS Object
-  if (content === undefined || done === undefined) {
-    res.status(400).json({error: 'Content and Done are required'})
+  if (content === undefined && done === undefined) {
+    res.status(400).json({error: 'Either content OR done are required'})
     return
   }
 
 
   try {
-    const id = req.params.id
-    const [result] = await db.query<ResultSetHeader>(`
-        UPDATE subtasks 
-        SET content = ?, done = ?
-        WHERE id = ?
-      `,
-      [content, done, id]
-    );
+    const updatedFields: Partial<{content: string, done: boolean}> = {};
+    if (content !== undefined) updatedFields.content = content
+    if (done !== undefined) updatedFields.done = done
     
-    if (result.affectedRows === 0) {
+    const result = await Subtask.updateOne({_id: id}, {$set: updatedFields})
+        
+    if (result.matchedCount === 0) {
       res.status(404).json({message: "Subtask not found"})
       return // makes sure that we are done with this function, enabling other calls to work after
     }
@@ -98,16 +68,12 @@ export const updateSubtask = async (req: Request, res: Response) => {
 }
 
 export const deleteSubtask = async (req: Request, res: Response) => {
-  const id = req.params.id
+  const id = req.params.id as string
 
   try {
-    const sql = `
-      DELETE FROM subtasks 
-      WHERE id = ?
-    `;
 
-    const [result] = await db.query<ResultSetHeader>(sql,[id]);
-    if (result.affectedRows === 0) {
+    const result = await Subtask.deleteOne({_id: id})
+    if (result.deletedCount === 0) {
       res.status(404).json({message: "Subtask not found"})
       return // makes sure that we are done with this function, enabling other calls to work after
     }

@@ -14,6 +14,15 @@ const TodoSchema = new Schema({
     type: Date, 
     default: Date.now 
   }
+}, {
+  toJSON: {virtuals: true},
+  toObject: {virtuals: true}
 });
+
+TodoSchema.virtual('subtasks', {
+  ref: 'subtasks',
+  localField: '_id',
+  foreignField: 'todo_id'
+})
 
 export default mongoose.model('todos', TodoSchema)

@@ -8,13 +8,14 @@ const fetchTodos = async () => {
     //   throw new Error('API is down')
     // }
     const data =  await response.json()
+    console.log(data);
   
     console.log('This will not be shown if an error occurs with the fetch, as long as errorhandling is not implemented')
   
     todoElement.innerHTML = data.map((todo) => `
       <div class="d-flex justify-content-between align-items-center">
         <p class="mb-0">
-          <span class="date"><i>${todo.created_at}</i></span>
+          <span class="date"><i>${formateDate(todo.created_at)}</i></span>
           <a href="todo.html?id=${todo._id}">${todo.content}</a>
         </p>
       </div>`

@@ -1,9 +1,10 @@
 # MongoDB Embedded Documents, DB Design & Client
 
 ## Videolinks
-- [01 - ](#)
-- [02 - ](#)
-- [03 - ](#)
+- [01 - solutions on todosapi with MongoDB and Joins](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260901%5F090143%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eea0af516%2Da026%2D4f7b%2D9eac%2D4e5eb068ea2d)
+- [02 - todosapi with Embedded subtasks in todos](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260901%5F093645%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E0a5b79cb%2D8e03%2D46e4%2Da00b%2D175998e68079)
+- [03 - Client displaying todos list & specific todo with associated subtasks](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260901%5F110113%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E8ef38135%2D806a%2D44ef%2D864c%2D21ec633b3440)
+- [04 - Client creating/deleting todos](#)
 
 
 ## The code walkthrough

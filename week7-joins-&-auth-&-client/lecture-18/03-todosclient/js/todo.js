@@ -1,6 +1,4 @@
-const API_URL = "http://localhost:3000/todos"
 // console.log(window.location.search)
-
 const todoTitle = document.getElementById('todo-title')
 const subtasksList = document.getElementById('subtasks-list')
 

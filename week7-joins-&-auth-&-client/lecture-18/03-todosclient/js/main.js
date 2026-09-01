@@ -2,29 +2,44 @@ const todoElement = document.getElementById('todos');
 
 const fetchTodos = async () => {
   try {
-    const response =  await fetch('http://localhost:3000/todos')
+    const response =  await fetch(API_URL)
     // console.log(response)
     // if (!response.ok) {
     //   throw new Error('API is down')
     // }
-    const data =  await response.json()
-    console.log(data);
-  
-    console.log('This will not be shown if an error occurs with the fetch, as long as errorhandling is not implemented')
-  
-    todoElement.innerHTML = data.map((todo) => `
-      <div class="d-flex justify-content-between align-items-center">
-        <p class="mb-0">
-          <span class="date"><i>${formateDate(todo.created_at)}</i></span>
-          <a href="todo.html?id=${todo._id}">${todo.content}</a>
-        </p>
-      </div>`
-    ).join('')
+    const todos =  await response.json()
+    // console.log(todos);
+    renderTodos(todos)
   } catch (error) {
     todoElement.innerHTML = "Opps something when wrong. Please try again later!"
     console.log(error)
   }
 }
+
 fetchTodos();
 
-console.log('This will execute before all other console.logs. Thats because the Fetch is an asynchronous operation')
+function renderTodos(todos) {
+  todoElement.innerHTML = todos.map((todo) => `
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="mb-0">
+        <span class="date"><i>${formateDate(todo.created_at)}</i></span>
+        <a href="todo.html?id=${todo._id}">${todo.content}</a>
+      </p>
+      <button type="button" class="btn btn-outline-danger" onclick="deleteTodo('${todo._id}')">DELETE</button>
+    </div>`
+  ).join('')
+}
+
+const deleteTodo = async (id) => {
+  // console.log('DELETE btn clicked with id: ' + id)
+
+  try {
+    await fetch(API_URL + `/${id}`, {
+      method: 'DELETE'
+    })
+    fetchTodos()
+  } catch (error) {
+    todoElement.innerHTML = "Opps something when wrong. Please try again later!"
+    console.log(error)
+  }
+}

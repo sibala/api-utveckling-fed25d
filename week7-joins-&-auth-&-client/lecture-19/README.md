@@ -7,8 +7,9 @@
 
 
 ## The code walkthrough
-- [01-api-with-auth](01-api-with-auth) - API with endpoints protected by an authentication layer
-- [02-client-template](02-client-template) - Empty template for the exercise below
+- [01-todoclient-solutions](01-todoclient-solutions) - Solutions on exercise from previous lecture 18
+- [02-api-with-auth](02-api-with-auth) - API with endpoints protected by an authentication layer
+- [03-client-template](03-client-template) - Empty template for the exercise below
 
 
 ## Reading suggestions
@@ -31,8 +32,8 @@
 
 # Exercises
 
-Use the `02-client-template` folder. The HTML, CSS, and `functions.js` are provided — you only need to write the JavaScript.
-Serve the client with `npx serve -p 4000` from the `02-client-template` folder.
+Use the `03-client-template` folder. The HTML, CSS, and `functions.js` are provided — you only need to write the JavaScript.
+Serve the client with `npx serve -p 4000` from the `03-client-template` folder.
 
 ## 1. Login - Implement the login logic in `login.js`
 - Add a click event listener to the Login button (`#login-btn`)

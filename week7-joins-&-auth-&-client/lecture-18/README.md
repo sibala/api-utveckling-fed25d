@@ -39,13 +39,13 @@ Refactor your TodosAPI so that subtasks are embedded inside the Todo document, i
 - Verify that `GET /todos/:id` returns the todo with its subtasks included automatically (no populate needed)
 
 ## 2. Create Subtasks via the Client - Add a form in `todo.html`
-- Uncomment the subtask form in `todo.html`
-- Uncomment the form submit event listener in `todo.js`
+- Add a subtask form in `todo.html`
+- Add a form submit event listener in `todo.js`
 - The form should `POST` to `/todos/:id/subtasks` with the subtask content
 - After creating a subtask, the subtask list should refresh automatically
 
 ## 3. Delete Subtasks via the Client - Add delete buttons in `todo.html`
-- Uncomment the delete buttons in the subtask list rendering in `todo.js`
-- Uncomment the `deleteSubtask` function in `todo.js`
+- Add a delete buttons in the subtask list rendering in `todo.js`
+- Add a `deleteSubtask` function in `todo.js`
 - Each subtask should have a delete button that sends a `DELETE` request to `/todos/:id/subtasks/:subtaskId`
 - After deleting a subtask, the subtask list should refresh automatically

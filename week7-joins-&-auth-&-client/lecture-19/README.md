@@ -36,10 +36,48 @@ npm install -D @types/bcrypt @types/cookie-parser @types/cors @types/jsonwebtoke
 - [MDN - window.location.href](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
 
 
+# Getting started
+
+## 1. Start the API (`02-api-with-auth`)
+
+```bash
+cd 02-api-with-auth
+npm install
+```
+
+Create a `.env` file in the `02-api-with-auth` folder with the following content:
+
+```
+JWT_SECRET = 'secret'
+NODE_ENV = 'development'
+CLIENT_URL = 'http://localhost:4000'
+```
+
+Start the API:
+
+```bash
+npm run dev
+```
+
+The API runs on `http://localhost:3000`.
+
+## 2. Start the client (`03-client-template`)
+
+Open a **new terminal** and run:
+
+```bash
+cd 03-client-template
+npx serve -p 4000
+```
+
+The client runs on `http://localhost:4000`. Make sure both the API and client are running at the same time.
+
+---
+
 # Exercises
 
 Use the `03-client-template` folder. The HTML, CSS, and `functions.js` are provided — you only need to write the JavaScript.
-Serve the client with `npx serve -p 4000` from the `03-client-template` folder.
+The client should already be running on port 4000 (see above).
 
 ## 1. Login - Implement the login logic in `login.js`
 - Add a click event listener to the Login button (`#login-btn`)

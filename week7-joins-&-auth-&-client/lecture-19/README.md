@@ -1,9 +1,9 @@
 # Auth intro
 
 ## Videolinks
-- [01 -...]()
-- [02 -...]()
-- [03 -...]()
+- [01 - Todoclient DELETE request solution](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260903%5F092818%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E17a4df6d%2De311%2D4967%2Dbf31%2De9fc59f42f58)
+- [02 - Todoclient POST request solution](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260903%5F101727%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E62d88be2%2D870d%2D4b77%2D861e%2Dbd75171d906f)
+- [03 - Auth API with exercises](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260903%5F111617%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E5a0529ac%2Deffa%2D44c2%2D862c%2Ddefd67556f3a)
 
 
 ## The code walkthrough

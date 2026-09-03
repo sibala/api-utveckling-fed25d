@@ -14,7 +14,7 @@ createForm.addEventListener('submit', async (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({content: content})
+            body: JSON.stringify({content})
         })
 
         window.location.href = "index.html"

@@ -18,8 +18,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.14.1",
-    "mysql2": "^3.14.0"
+    "mongoose": "^8.14.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

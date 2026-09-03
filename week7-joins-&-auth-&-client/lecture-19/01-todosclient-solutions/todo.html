@@ -16,11 +16,22 @@
     <p id="todo-date" class="date"></p>
 
     <h3>Subtasks</h3>
+    <form id="subtask-form" class="row g-2 mb-3">
+      <div class="col-3">
+        <input class="form-control" type="text" name="subtask-content" id="subtask-content" placeholder="New task">
+      </div>
+
+      <div class="col-2">
+        <button class="btn btn-primary">Add</button>
+      </div>
+    </form>
+
     <div id="subtasks-list">
       <!-- <div class="">
         <p>
           <span class="date"><i>2026-04-24</i></span>
           <span>Content....</span>
+          <button type="button" class="btn btn-outline-danger ms-5" onclick="deleteTodo('${todo._id}')">Delete</button>
         </p>
       </div> -->
     </div>

@@ -25,10 +25,11 @@ function renderTodos(todos) {
         <span class="date"><i>${formateDate(todo.created_at)}</i></span>
         <a href="todo.html?id=${todo._id}">${todo.content}</a>
       </p>
-      <button type="button" class="btn btn-outline-danger" onclick="deleteTodo('${todo._id}')">DELETE</button>
+      <button type="button" class="btn btn-outline-danger" onclick="deleteTodo('${todo._id}')">Delete</button>
     </div>`
   ).join('')
-}
+}  
+
 
 const deleteTodo = async (id) => {
   // console.log('DELETE btn clicked with id: ' + id)

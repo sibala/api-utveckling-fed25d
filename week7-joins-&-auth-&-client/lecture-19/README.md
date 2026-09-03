@@ -21,6 +21,12 @@
 - [npm - cookie-parser](https://www.npmjs.com/package/cookie-parser)
 - [npm - bcrypt](https://www.npmjs.com/package/bcrypt)
 
+### Install auth-related packages
+```bash
+npm install bcrypt cookie-parser cors jsonwebtoken
+npm install -D @types/bcrypt @types/cookie-parser @types/cors @types/jsonwebtoken
+```
+
 ### Client
 - [MDN - try...catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
 - [MDN - Fetch API (GET, POST, DELETE)](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)

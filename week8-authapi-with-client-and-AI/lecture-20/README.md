@@ -12,6 +12,7 @@
 - [01-client-solutions](01-client-solutions) - Solutions on exercise from previous lecture 19
 - [02-api-with-register-and-bcrypt](02-api-with-register-and-bcrypt) - Addition on the auth-api, with register and bcrypt
 - [the_programmers_guide_to_ai_sovereignty.pdf](the_programmers_guide_to_ai_sovereignty.pdf) - Empty template for the exercise below
+- [starter-app-template](starter-app-template) - Starter template for the group project
 
 
 ## Reading suggestions

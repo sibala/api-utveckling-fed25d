@@ -1,7 +1,7 @@
 // 1. Create an addEventlistener for the login button on click. The buttons ID is "#login-btn"
 document.getElementById("login-btn").addEventListener("click", function(event) {
     event.preventDefault();
-    // 2. SHould make a POST request to "http://localhost:3000/auth/login", 
+    // 2. SHould make a POST request to API_URL + "/auth/login", 
     // with a body of {username: "username", password: "password"}. login credentials should be hardcoded.  
     // And include "credentials: "include"
 
@@ -9,7 +9,7 @@ document.getElementById("login-btn").addEventListener("click", function(event) {
     // 3. Use async/await and try/catch to handle the response and any errors that may occur. If the response is successful, console log the data returned from the server.
     async function login() {
         try {
-            const response = await fetch("http://localhost:3000/auth/login", {
+            const response = await fetch(API_URL + "/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

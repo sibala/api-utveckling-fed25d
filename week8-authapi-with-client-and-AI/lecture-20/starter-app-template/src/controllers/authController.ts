@@ -9,7 +9,7 @@ export const login = async (req: Request, res: Response) => {
         return
     }
 
-    const hashedPassword = "$2b$10$WoiGUJIU1IB5VarJOe468eae0wHxD53MI9PJta2ohnBam2R72KcS"
+    const hashedPassword = "$2b$10$WoiGUJIU1IB5VarJOe468eae0wHxD53MI9PJta2ohnBam2R72Kc2S"
 
     const isLoggedIn = await bcrypt.compare(password, hashedPassword)
     if (username === 'admin' && password === '123') {

@@ -1,10 +1,10 @@
-// 1. FETCH GET to "http://localhost:3000/greetings/admin" with credentials: "include". 
+// 1. FETCH GET to API_URL + "/greetings/admin" with credentials: "include". 
 // Use async/await and try/catch to handle the response and any errors that may occur. 
 // If the response is successful, display the data.message in #greeting
 
 async function fetchGreeting() {
     try {
-        const response = await fetch("http://localhost:3000/greetings/admin", {
+        const response = await fetch(API_URL + "/greetings/admin", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -33,10 +33,10 @@ fetchGreeting();
 // 2. Create an addEventlistener for the logout button on click. The buttons ID is "#logout-btn"
 document.getElementById("logout-btn").addEventListener("click", function(event) {
     event.preventDefault();
-    // 3. Should make a POST request to "http://localhost:3000/auth/logout", with credentials: "include"
+    // 3. Should make a POST request to API_URL + "/auth/logout", with credentials: "include"
     async function logout() {
         try {
-            const response = await fetch("http://localhost:3000/auth/logout", {
+            const response = await fetch(API_URL + "/auth/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

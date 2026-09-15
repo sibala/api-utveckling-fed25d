@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Todo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Update Todo</h1>
+    <p id="update-message"></p>
+
+    <form id="update-form" class="mt-3">
+      <div class="mb-3">
+        <label for="todo-content" class="form-label">Content</label>
+        <input type="text" class="form-control" id="todo-content" name="content" required>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="todo-done" name="done">
+        <label for="todo-done" class="form-check-label">Done</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="index.html" class="btn btn-outline-secondary ms-2">&larr; Back to todos</a>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/update.js"></script>
+</body>
+</html>

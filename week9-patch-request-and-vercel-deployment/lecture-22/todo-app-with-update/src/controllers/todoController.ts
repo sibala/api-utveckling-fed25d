@@ -1,0 +1,115 @@
+import { Request, Response } from "express";
+import Todo from "../models/Todo";
+
+/**
+ * Part of the exercise to figure search and sort functionality out on your own
+ */
+export const fetchAllTodos = async (req: Request, res: Response) => {
+  const search = req.query.search
+  const sort = req.query.sort as string
+  
+  try {
+
+
+    let filter: {} = {};
+    if (search) {
+      filter = {content: { $regex: search}}
+    }
+    
+    let sortOrder: {} = {};
+    if (sort && (sort.toLowerCase() === 'asc' || sort.toLowerCase() === 'desc' )) {
+      sortOrder = {content: sort.toLowerCase()}
+    }
+
+    const todos = await Todo.find(filter).sort(sortOrder)
+    res.json(todos)
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+}
+
+export const fetchTodo = async (req: Request, res: Response) => {
+  const id = req.params.id as string
+
+  try {
+    const todo = await Todo.findById(id).populate('subtasks')
+    if (!todo) {
+      res.status(404).json({message: "Todo not found"})
+      return
+    }
+    res.json(todo)
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+}
+
+
+export const createTodo = async (req: Request, res: Response) => {
+  const content = req.body.content;
+  if (content === undefined) {
+    res.status(400).json({error: 'Content is required'}) 
+    return; 
+  }
+
+  try {
+    const newTodo = await Todo.create({content: content})
+    res.status(201).json({message: 'Todo created', newTodo: newTodo})
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+}
+
+/**
+ * Part of the exercise to figure out patch request on your own
+ */
+export const updateTodo = async (req: Request, res: Response) => {
+  // const content = req.body.content;
+  // const done = req.body.done;
+  const id = req.params.id as string
+  const {content, done} = req.body // Destructur JS Object
+  if (content === undefined && done === undefined) {
+    res.status(400).json({error: 'Either Content or Done are required'})
+    return
+  }
+
+
+  try {
+    const updateFields: Partial<{ content: string, done: boolean}> = {}
+    if (content !== undefined) updateFields.content = content
+    if (done !== undefined) updateFields.done = done
+
+    const result = await Todo.updateOne(
+      {_id: id},
+      {$set: updateFields}
+    )
+    
+    if (result.matchedCount === 0) {
+      res.status(404).json({message: "Todo not found"})
+      return // makes sure that we are done with this function, enabling other calls to work after
+    }
+  
+    res.json({message: 'Todo updated'})
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+}
+
+export const deleteTodo = async (req: Request, res: Response) => {
+  const id = req.params.id as string
+
+  try {
+    const result = await Todo.deleteOne({ _id: id }); // returns {deletedCount: 1}
+    if (result.deletedCount === 0) {
+      res.status(404).json({message: "Todo not found"})
+      return // makes sure that we are done with this function, enabling other calls to work after
+    }
+    res.json({message: 'Todo deleted', result: result})
+  } catch(error: unknown) {
+    const message = error  instanceof Error ? error.message : 'Unknown error'
+    res.status(500).json({error: message})
+  }
+}

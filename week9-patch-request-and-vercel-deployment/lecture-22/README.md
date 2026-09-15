@@ -1,7 +1,7 @@
 # Auth intro
 
 ## Videolinks
-- [01 - coming soon...]()
+- [01 - PATCH-request and Vercel deployment](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F08%20API%2Dutveckling%2FRecordings%2FAPI%2Dutveckling%2D20260915%5F090714%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ec917d84c%2D42e9%2D479c%2Dbe1c%2D5ea5f1e088fe)
 
 
 
